@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>My Website</title>
+    <title>Login</title>
 
     <style>
         * {
@@ -15,94 +14,149 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            color: #222;
-        }
-
-        header {
-            background: #111;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        header h1 {
-            margin-bottom: 10px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        .hero {
-            min-height: 70vh;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
+            background: linear-gradient(135deg, #111827, #2563eb);
+            padding: 20px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 380px;
+            background: white;
+            padding: 35px 30px;
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-box h1 {
             text-align: center;
-            padding: 30px;
+            margin-bottom: 8px;
+            color: #111827;
         }
 
-        .hero h2 {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 25px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: #111;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-        }
-
-        .btn:hover {
-            background: #333;
-        }
-
-        footer {
-            background: #111;
-            color: white;
+        .login-box .subtitle {
             text-align: center;
-            padding: 15px;
+            color: #666;
+            margin-bottom: 28px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 9px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #2563eb;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            background: #2563eb;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background: #1d4ed8;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 18px;
+            font-weight: bold;
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>আমার Website</h1>
+    <div class="login-box">
 
-        <nav>
-            <a href="home.html">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
-    </header>
+        <h1>Welcome 👋</h1>
+        <p class="subtitle">Login to your account</p>
 
-    <section class="hero">
-        <h2>স্বাগতম 👋</h2>
+        <form onsubmit="login(event)">
 
-        <p>
-            এটি আমার নতুন Website-এর Home Page।
-        </p>
+            <div class="input-group">
+                <label>Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+            </div>
 
-        <a href="#" class="btn">Get Started</a>
-    </section>
+            <div class="input-group">
+                <label>Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                >
+            </div>
 
-    <footer>
-        <p>© 2026 My Website. All Rights Reserved.</p>
-    </footer>
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+        <p id="message"></p>
+
+    </div>
+
+    <script>
+        function login(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const message = document.getElementById("message");
+
+            /*
+             * Demo login:
+             * Email: admin@gmail.com
+             * Password: 123456
+             */
+
+            if (email === "admin@gmail.com" && password === "123456") {
+                message.style.color = "green";
+                message.textContent = "Login successful! ✅";
+
+                // এখানে পরে dashboard page-এ পাঠানো যাবে
+                // window.location.href = "dashboard.html";
+
+            } else {
+                message.style.color = "red";
+                message.textContent = "Email অথবা Password ভুল! ❌";
+            }
+        }
+    </script>
 
 </body>
 </html>
