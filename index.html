@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <h1>💰 Earnova</h1>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+        }
+
+        .header {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .header p {
+            margin-bottom: 0;
+            color: #d1d5db;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 15px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            box-shadow: 0 3px 12px #0001;
+        }
+
+        .balance {
+            background: #2563eb;
+            color: white;
+            text-align: center;
+        }
+
+        .balance h1 {
+            font-size: 38px;
+            margin: 10px 0 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .withdraw {
+            background: #16a34a;
+        }
+
+        .logout {
+            background: #dc2626;
+        }
+
+        .footer {
+            text-align: center;
+            color: #777;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>💰 My Earning Site</h1>
+        <p>Welcome to your earning dashboard</p>
+    </div>
+
+    <div class="container">
+
+        <!-- Welcome -->
+        <div class="card">
+            <h2>Welcome, <span id="username">User</span> 👋</h2>
+            <p>Complete tasks and manage your balance.</p>
+        </div>
+
+        <!-- Balanc<div class="card">
+    <h2>📱 Task 1</h2>
+    <p>Complete this task and earn ৳10.</p>
+    <button onclick="earn(10)">Complete Task +৳10</button>
+</div>
+
+<div class="card">
+    <h2>▶️ Task 2</h2>
+    <p>Complete this task and earn ৳20.</p>
+    <button onclick="earn(20)">Complete Task +৳20</button>
+</div>
+
+<div class="card">
+    <h2>⭐ Task 3</h2>
+    <p>Complete this task and earn ৳30.</p>
+    <button onclick="earn(30)">Complete Task +৳30</button>
+    </div>e -->
+        <div class="card balance">
+            <h3>Your Balance</h3>
+            <h1>৳<span id="balance">0</span></h1>
+        </div>
+
+        <!-- Daily Task --><div class="card">
+    <h2>📅 Daily Check-in</h2>
+    <p>Check in today and earn ৳5.</p>
+    <button onclick="earn(5)">Check In +৳5</button>
+</div>
+
+<div class="card">
+    <h2>▶️ Watch Video</h2>
+    <p>Watch the assigned video and earn ৳10.</p>
+    <button onclick="earn(10)">Complete +৳10</button>
+</div>
+
+<div class="card">
+    <h2>🌐 Visit Website</h2>
+    <p>Visit the assigned website and earn ৳10.</p>
+    <button onclick="earn(10)">Complete +৳10</button>
+</div>
+
+<div class="card">
+    <h2>📝 Complete Quiz</h2>
+    <p>Complete today's quiz and earn ৳15.</p>
+    <button onclick="earn(15)">Complete +৳15</button>
+</div>
+
+<div class="card">
+    <h2>🎁 Daily Bonus</h2>
+    <p>Claim your daily bonus and earn ৳20.</p>
+    <button onclick="earn(20)">Claim +৳20</button>
+</div>
+        <div class="card">
+            <h2>📱 Daily Task</h2>
+            <p>Complete this task and earn ৳10.</p>
+
+            <button onclick="earn(10)">
+                Complete Task +৳10
+            </button>
+        </div>
+
+        <!-- Bonus -->
+        <div class="card">
+            <h2>🎁 Bonus Task</h2>
+            <p>Complete this bonus task and earn ৳20.</p>
+
+            <button onclick="earn(20)">
+                Get Bonus +৳20
+            </button>
+        </div>
+
+        <!-- <button onclick="window.location.href='deposit.html'">
+    💳 Deposit Now
+    </button>Deposit -->
+        <div class="card">
+            <h2>💳 Deposit</h2>
+
+            <p>Minimum deposit: ৳100</p>
+
+            <input
+                type="number"
+                id="depositAmount"
+                placeholder="Enter deposit amount"
+            >
+
+            <button onclick="deposit()">
+                Deposit
+            </button>
+        </div>
+
+        <!-- Withdraw -->
+        <div class="card">
+            <h2>💸 Withdraw</h2>
+
+            <p>Minimum withdrawal: ৳500</p>
+
+            <input
+                type="text"
+                id="withdrawNumber"
+                placeholder="bKash / Nagad Number"
+            >
+
+            <input
+                type="number"
+                id="withdrawAmount"
+                placeholder="Enter withdrawal amount"
+            >
+
+            <button class="withdraw" onclick="withdraw()">
+                Request Withdrawal
+            </button>
+        </div>
+
+        <!-- Logout -->
+        <div class="card">
+            <button class="logout" onclick="logout()">
+                Logout
+            </button>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © 2026 My Earning Site
+    </div>
+
+
+    <script>
+
+        /* Username */
+
+        const savedUsername =
+            localStorage.getItem("username");
+
+        if (savedUsername) {
+            document.getElementById("username").innerText =
+                savedUsername;
+        }
+
+
+        /* Balance */
+
+        let balance =
+            Number(localStorage.getItem("balance")) || 0;
+
+        document.getElementById("balance").innerText =
+            balance;
+
+
+        /* Earn */
+
+        function earn(amount) {
+
+            balance = balance + amount;
+
+            localStorage.setItem(
+                "balance",
+                balance
+            );
+
+            document.getElementById("balance").innerText =
+                balance;
+
+            alert(
+                "🎉 You earned ৳" + amount
+            );
+        }
+
+
+        /* Deposit */
+
+        function deposit() {
+
+            const amount =
+                Number(
+                    document.getElementById(
+                        "depositAmount"
+                    ).value
+                );
+
+            if (amount < 100) {
+
+                alert(
+                    "Minimum deposit is ৳100."
+                );
+
+                return;
+            }
+
+            alert(
+                "Demo deposit request: ৳" +
+                amount
+            );
+        }
+
+
+        /* Withdraw */
+
+        function withdraw() {
+
+            const number =
+                document.getElementById(
+                    "withdrawNumber"
+                ).value;
+
+            const amount =
+                Number(
+                    document.getElementById(
+                        "withdrawAmount"
+                    ).value
+                );
+
+
+            if (number === "") {
+
+                alert(
+                    "Please enter your bKash/Nagad number."
+                );
+
+                return;
+            }
+
+
+            if (amount < 500) {
+
+                alert(
+                    "Minimum withdrawal is ৳500."
+                );
+
+                return;
+            }
+
+
+            if (amount > balance) {
+
+                alert(
+                    "Insufficient balance."
+                );
+
+                return;
+            }
+
+
+            balance = balance - amount;
+
+            localStorage.setItem(
+                "balance",
+                balance
+            );
+
+            document.getElementById(
+                "balance"
+            ).innerText = balance;
+
+
+            alert(
+                "Withdrawal request submitted!\n" +
+                "Number: " + number +
+                "\nAmount: ৳" + amount
+            );
+        }
+
+
+        /* Logout */
+
+        function logout() {
+
+            window.location.href =
+                "login.html";
+        }
+
+    </script>
+
+</body>
+</html>
