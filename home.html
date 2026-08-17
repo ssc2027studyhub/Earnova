@@ -1,56 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Earnova Login</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #111827, #2563eb);
+      padding: 20px;
     }
 
     .box {
-      width: 85%;
-      max-width: 360px;
+      width: 100%;
+      max-width: 380px;
       background: white;
       padding: 30px;
       border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    h1 {
       text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
     }
 
     input {
       width: 100%;
-      padding: 13px;
-      margin: 8px 0;
-      box-sizing: border-box;
+      padding: 14px;
+      margin-bottom: 15px;
       border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 9px;
+      font-size: 16px;
     }
 
     button {
       width: 100%;
-      padding: 13px;
-      margin-top: 10px;
-      border: 0;
-      border-radius: 8px;
+      padding: 14px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 9px;
       background: #2563eb;
       color: white;
       font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     .create {
       background: #111827;
+      margin-top: 12px;
     }
 
     #message {
-      margin-top: 15px;
+      text-align: center;
+      margin-top: 18px;
       font-weight: bold;
     }
   </style>
@@ -58,98 +78,198 @@
 
 <body>
 
-<div class="box">
+  <div class="box">
 
-  <h1>Earnova</h1>
+    <h1>Earnova</h1>
 
-  <p>Login to your account</p>
+    <p class="subtitle">
+      Login to your account
+    </p>
 
-  <input type="email" id="email" placeholder="Email">
+    <input
+      type="email"
+      id="email"
+      placeholder="Enter your email"
+    >
 
-  <input type="password" id="password" placeholder="Password">
+    <input
+      type="password"
+      id="password"
+      placeholder="Enter your password"
+    >
 
-  <button onclick="login()">Login</button>
+    <button onclick="login()">
+      Login
+    </button>
 
-  <button class="create" onclick="createAccount()">
-    Create Account
-  </button>
+    <button class="create" onclick="createAccount()">
+      Create Account
+    </button>
 
-  <p id="message"></p>
+    <p id="message"></p>
 
-</div>
+  </div>
 
-<script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  <script type="module">
 
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword
-}
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+    import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBH4xPbZhbBgJbvs827ILtyOozFt8F4FDY",
-  authDomain: "earnova-24492.firebaseapp.com",
-  projectId: "earnova-24492",
-  storageBucket: "earnova-24492.firebasestorage.app",
-  messagingSenderId: "942334786240",
-  appId: "1:942334786240:web:ee2927958b39e683474b25",
-  measurementId: "G-BJMBX0VWBE"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-window.login = async function() {
-
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const message = document.getElementById("message");
-
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-
-    message.style.color = "green";
-    message.innerText = "Login successful! ✅";
-
-  } catch (error) {
-    message.style.color = "red";
-    message.innerText = "Login failed ❌";
-  }
-};
-
-window.createAccount = async function() {
-
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const message = document.getElementById("message");
-
-  try {
-    await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-    message.style.color = "green";
-    message.innerText = "Account created! ✅";
-
-  } catch (error) {
-
-    message.style.color = "red";
-
-    if (error.code === "auth/email-already-in-use") {
-      message.innerText = "এই Email দিয়ে account আছে।";
-    } else {
-      message.innerText = error.message;
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword
     }
-  }
-};
+    from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-</script>
+
+    // Firebase Configuration
+
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyBH4xPbZhbBgJbvs827ILtyOozFt8F4FDY",
+
+      authDomain: "earnova-24492.firebaseapp.com",
+
+      projectId: "earnova-24492",
+
+      storageBucket: "earnova-24492.firebasestorage.app",
+
+      messagingSenderId: "942334786240",
+
+      appId: "1:942334786240:web:ee2927958b39e683474b25",
+
+      measurementId: "G-BJMBX0VWBE"
+
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+
+    // LOGIN
+
+    window.login = async function() {
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const password =
+        document.getElementById("password").value;
+
+      const message =
+        document.getElementById("message");
+
+
+      if (!email || !password) {
+
+        message.style.color = "red";
+
+        message.innerText =
+          "Email এবং Password দিন।";
+
+        return;
+      }
+
+
+      try {
+
+        await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        message.style.color = "green";
+
+        message.innerText =
+          "Login successful! ✅";
+
+      } catch (error) {
+
+        message.style.color = "red";
+
+        message.innerText =
+          "Email অথবা Password ভুল। ❌";
+
+      }
+
+    };
+
+
+    // CREATE ACCOUNT
+
+    window.createAccount = async function() {
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const password =
+        document.getElementById("password").value;
+
+      const message =
+        document.getElementById("message");
+
+
+      if (!email || !password) {
+
+        message.style.color = "red";
+
+        message.innerText =
+          "Email এবং Password দিন।";
+
+        return;
+      }
+
+
+      if (password.length < 6) {
+
+        message.style.color = "red";
+
+        message.innerText =
+          "Password কমপক্ষে 6 characters হতে হবে।";
+
+        return;
+      }
+
+
+      try {
+
+        await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        message.style.color = "green";
+
+        message.innerText =
+          "Account created successfully! ✅";
+
+      } catch (error) {
+
+        message.style.color = "red";
+
+        if (error.code === "auth/email-already-in-use") {
+
+          message.innerText =
+            "এই Email দিয়ে account আগে থেকেই আছে।";
+
+        } else {
+
+          message.innerText =
+            error.message;
+
+        }
+
+      }
+
+    };
+
+  </script>
 
 </body>
 </html>
