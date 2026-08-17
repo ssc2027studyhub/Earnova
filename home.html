@@ -1,83 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Earnova Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earnova Login</title>
 
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial;
-            background: linear-gradient(135deg, #111827, #2563eb);
-        }
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial;
+      background: linear-gradient(135deg, #111827, #2563eb);
+    }
 
-        .box {
-            width: 85%;
-            max-width: 360px;
-            background: white;
-            padding: 30px;
-            border-radius: 18px;
-            text-align: center;
-        }
+    .box {
+      width: 85%;
+      max-width: 360px;
+      background: white;
+      padding: 30px;
+      border-radius: 18px;
+      text-align: center;
+    }
 
-        input {
-            width: 100%;
-            padding: 13px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
+    input {
+      width: 100%;
+      padding: 13px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
 
-        button {
-            width: 100%;
-            padding: 13px;
-            margin-top: 10px;
-            border: 0;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-        }
+    button {
+      width: 100%;
+      padding: 13px;
+      margin-top: 10px;
+      border: 0;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+    }
 
-        .create {
-            background: #111827;
-        }
+    .create {
+      background: #111827;
+    }
 
-        #message {
-            margin-top: 15px;
-            font-weight: bold;
-        }
-    </style>
+    #message {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
 
 <div class="box">
 
-    <h1>Earnova</h1>
+  <h1>Earnova</h1>
 
-    <p>Login to your account</p>
+  <p>Login to your account</p>
 
-    <input type="email" id="email" placeholder="Email">
+  <input type="email" id="email" placeholder="Email">
 
-    <input type="password" id="password" placeholder="Password">
+  <input type="password" id="password" placeholder="Password">
 
-    <button onclick="login()">Login</button>
+  <button onclick="login()">Login</button>
 
-    <button class="create" onclick="createAccount()">
-        Create Account
-    </button>
+  <button class="create" onclick="createAccount()">
+    Create Account
+  </button>
 
-    <p id="message"></p>
+  <p id="message"></p>
 
 </div>
-
 
 <script type="module">
 
@@ -85,81 +84,69 @@ import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
-    getAuth,
-    signInWithEmailAndPassword,
-    createUserWithEmailAndPassword
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-
 const firebaseConfig = {
-    apiKey: "AIzaSyBH4xPbZhbBgJbvs827ILtyOozFt8F4FDY",
-    authDomain: "earnova-24492.firebaseapp.com",
-    projectId: "earnova-24492",
-    storageBucket: "earnova-24492.firebasestorage.app",
-    messagingSenderId: "942334786240",
-    appId: "1:942334786240:web:ee2927958b39e683474b25",
-    measurementId: "G-BJMBX0VWBE"
+  apiKey: "AIzaSyBH4xPbZhbBgJbvs827ILtyOozFt8F4FDY",
+  authDomain: "earnova-24492.firebaseapp.com",
+  projectId: "earnova-24492",
+  storageBucket: "earnova-24492.firebasestorage.app",
+  messagingSenderId: "942334786240",
+  appId: "1:942334786240:web:ee2927958b39e683474b25",
+  measurementId: "G-BJMBX0VWBE"
 };
-
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-
 window.login = async function() {
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const message = document.getElementById("message");
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const message = document.getElementById("message");
 
-    try {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
 
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+    message.style.color = "green";
+    message.innerText = "Login successful! ✅";
 
-        message.style.color = "green";
-        message.innerText = "Login successful! ✅";
-
-    } catch (error) {
-
-        message.style.color = "red";
-        message.innerText = "Login failed ❌";
-
-    }
+  } catch (error) {
+    message.style.color = "red";
+    message.innerText = "Login failed ❌";
+  }
 };
-
 
 window.createAccount = async function() {
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const message = document.getElementById("message");
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const message = document.getElementById("message");
 
-    try {
+  try {
+    await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-        await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+    message.style.color = "green";
+    message.innerText = "Account created! ✅";
 
-        message.style.color = "green";
-        message.innerText = "Account created! ✅";
+  } catch (error) {
 
-    } catch (error) {
+    message.style.color = "red";
 
-        message.style.color = "red";
-
-        if (error.code === "auth/email-already-in-use") {
-            message.innerText = "এই Email দিয়ে account আছে।";
-        } else {
-            message.innerText = error.message;
-        }
+    if (error.code === "auth/email-already-in-use") {
+      message.innerText = "এই Email দিয়ে account আছে।";
+    } else {
+      message.innerText = error.message;
     }
+  }
 };
 
 </script>
