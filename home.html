@@ -1,86 +1,71 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Earnova - Login</title>
 
     <style>
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            font-family: Arial, sans-serif;
+            margin: 0;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #111827, #2563eb);
             padding: 20px;
         }
 
-        .login-box {
+        .box {
             width: 100%;
             max-width: 380px;
             background: white;
-            padding: 35px 30px;
+            padding: 30px;
             border-radius: 18px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(0,0,0,.3);
         }
 
-        .login-box h1 {
+        h1 {
             text-align: center;
-            margin-bottom: 8px;
-            color: #111827;
+            margin: 0 0 8px;
         }
 
-        .login-box .subtitle {
+        .subtitle {
             text-align: center;
             color: #666;
-            margin-bottom: 28px;
+            margin-bottom: 25px;
         }
 
-        .input-group {
-            margin-bottom: 18px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 7px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .input-group input {
+        input {
             width: 100%;
-            padding: 13px;
+            padding: 14px;
+            margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 9px;
             font-size: 16px;
-            outline: none;
         }
 
-        .input-group input:focus {
-            border-color: #2563eb;
-        }
-
-        .login-btn {
+        button {
             width: 100%;
             padding: 14px;
+            margin-top: 5px;
             border: none;
             border-radius: 9px;
             background: #2563eb;
             color: white;
-            font-size: 17px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
         }
 
-        .login-btn:hover {
-            background: #1d4ed8;
+        .signup {
+            background: #111827;
+            margin-top: 12px;
         }
 
         #message {
@@ -93,70 +78,200 @@
 
 <body>
 
-    <div class="login-box">
+<div class="box">
 
-        <h1>Welcome 👋</h1>
-        <p class="subtitle">Login to your account</p>
+    <h1>Earnova</h1>
 
-        <form onsubmit="login(event)">
+    <p class="subtitle">
+        Login to your account
+    </p>
 
-            <div class="input-group">
-                <label>Email</label>
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter your email"
-                    required
-                >
-            </div>
+    <input
+        type="email"
+        id="email"
+        placeholder="Enter your email"
+    >
 
-            <div class="input-group">
-                <label>Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter your password"
-                    required
-                >
-            </div>
+    <input
+        type="password"
+        id="password"
+        placeholder="Enter your password"
+    >
 
-            <button type="submit" class="login-btn">
-                Login
-            </button>
+    <button onclick="login()">
+        Login
+    </button>
 
-        </form>
+    <button class="signup" onclick="signup()">
+        Create Account
+    </button>
 
-        <p id="message"></p>
+    <p id="message"></p>
 
-    </div>
+</div>
 
-    <script>
-        function login(event) {
-            event.preventDefault();
 
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
-            const message = document.getElementById("message");
+<script type="module">
 
-            /*
-             * Demo login:
-             * Email: admin@gmail.com
-             * Password: 123456
-             */
+    import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-            if (email === "admin@gmail.com" && password === "123456") {
-                message.style.color = "green";
-                message.textContent = "Login successful! ✅";
+    import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-                // এখানে পরে dashboard page-এ পাঠানো যাবে
-                // window.location.href = "dashboard.html";
+
+    // Firebase Configuration
+
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyBH4xPbZhbBgJbvs827ILtyOozFt8F4FDY",
+
+        authDomain: "earnova-24492.firebaseapp.com",
+
+        projectId: "earnova-24492",
+
+        storageBucket: "earnova-24492.firebasestorage.app",
+
+        messagingSenderId: "942334786240",
+
+        appId: "1:942334786240:web:ee2927958b39e683474b25",
+
+        measurementId: "G-BJMBX0VWBE"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+
+    // LOGIN
+
+    window.login = async function () {
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const password =
+            document.getElementById("password").value;
+
+        const message =
+            document.getElementById("message");
+
+
+        if (!email || !password) {
+
+            message.style.color = "red";
+
+            message.textContent =
+                "Email এবং Password দিন।";
+
+            return;
+        }
+
+
+        try {
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            message.style.color = "green";
+
+            message.textContent =
+                "Login successful! ✅";
+
+        } catch (error) {
+
+            message.style.color = "red";
+
+            if (error.code === "auth/invalid-credential") {
+
+                message.textContent =
+                    "Email অথবা Password ভুল।";
 
             } else {
-                message.style.color = "red";
-                message.textContent = "Email অথবা Password ভুল! ❌";
+
+                message.textContent =
+                    error.message;
             }
         }
-    </script>
+    };
+
+
+    // CREATE ACCOUNT
+
+    window.signup = async function () {
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const password =
+            document.getElementById("password").value;
+
+        const message =
+            document.getElementById("message");
+
+
+        if (!email || !password) {
+
+            message.style.color = "red";
+
+            message.textContent =
+                "Email এবং Password দিন।";
+
+            return;
+        }
+
+
+        if (password.length < 6) {
+
+            message.style.color = "red";
+
+            message.textContent =
+                "Password কমপক্ষে 6 characters হতে হবে।";
+
+            return;
+        }
+
+
+        try {
+
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            message.style.color = "green";
+
+            message.textContent =
+                "Account created successfully! ✅";
+
+        } catch (error) {
+
+            message.style.color = "red";
+
+            if (error.code === "auth/email-already-in-use") {
+
+                message.textContent =
+                    "এই Email দিয়ে আগে থেকেই account আছে।";
+
+            } else {
+
+                message.textContent =
+                    error.message;
+            }
+        }
+    };
+
+</script>
 
 </body>
 </html>
+            
