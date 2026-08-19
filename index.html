@@ -1,36 +1,123 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Earnova - Login</title>
+  <title>Earnova Login</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #111827, #2563eb);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .box {
+      width: 100%;
+      max-width: 400px;
+      background: white;
+      padding: 30px 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 35px;
+      font-weight: bold;
+      color: #2563eb;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #222;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+
+    .create {
+      background: #16a34a;
+    }
+
+    p {
+      text-align: center;
+      color: #666;
+      margin: 8px 0 15px;
+    }
+  </style>
 </head>
 
 <body>
 
-  <h1>Earnova</h1>
+  <div class="box">
 
-  <h2>Login</h2>
+    <div class="logo">Earnova</div>
 
-  <input type="email" id="email" placeholder="Email">
-  <br><br>
+    <h2>Login</h2>
 
-  <input type="password" id="password" placeholder="Password">
-  <br><br>
+    <input type="email" id="email" placeholder="Email">
 
-  <button onclick="login()">Login</button>
+    <input type="password" id="password" placeholder="Password">
 
-  <p>Don't have an account?</p>
-  <button onclick="goCreate()">Create Account</button>
+    <button onclick="login()">Login</button>
+
+    <p>Don't have an account?</p>
+
+    <button class="create" onclick="createAccount()">
+      Create Account
+    </button>
+
+  </div>
 
   <script>
+
     function login() {
-      alert("Login system coming soon!");
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if (email === "" || password === "") {
+        alert("Please enter email and password.");
+        return;
+      }
+
+      window.location.href = "home.html";
     }
 
-    function goCreate() {
-      alert("Create Account system coming soon!");
+    function createAccount() {
+      alert("Create Account page will be added next.");
     }
+
   </script>
 
 </body>
