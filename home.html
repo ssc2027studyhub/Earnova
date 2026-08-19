@@ -1,1 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Earnova - Home</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f4f7fb;
+      color: #222;
+    }
+
+    .header {
+      background: #111827;
+      color: white;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .logout {
+      background: #ef4444;
+      color: white;
+      border: none;
+      padding: 9px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .welcome {
+      padding: 30px 20px;
+      background: white;
+    }
+
+    .welcome h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .welcome p {
+      color: #666;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .balance {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      padding: 25px;
+      border-radius: 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .balance p {
+      opacity: 0.9;
+      margin-bottom: 10px;
+    }
+
+    .balance h2 {
+      font-size: 35px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      color: #2563eb;
+    }
+
+    .card p {
+      color: #666;
+    }
+
+    .action {
+      margin-top: 20px;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .action h2 {
+      margin-bottom: 15px;
+    }
+
+    .action button {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .action button:hover {
+      background: #1d4ed8;
+    }
+
+    @media (max-width: 500px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="logo">Earnova</div>
+
+    <button class="logout" onclick="logout()">
+      Logout
+    </button>
+  </div>
+
+  <div class="welcome">
+    <h1>Welcome to Earnova 👋</h1>
+    <p>Start earning and manage your account.</p>
+  </div>
+
+  <div class="container">
+
+    <div class="balance">
+      <p>Your Balance</p>
+      <h2>৳0.00</h2>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>💰 Earnings</h3>
+        <p>৳0.00</p>
+      </div>
+
+      <div class="card">
+        <h3>👥 Referrals</h3>
+        <p>0 Users</p>
+      </div>
+
+      <div class="card">
+        <h3>📊 Tasks</h3>
+        <p>0 Completed</p>
+      </div>
+
+      <div class="card">
+        <h3>💳 Withdraw</h3>
+        <p>৳0.00</p>
+      </div>
+
+    </div>
+
+    <div class="action">
+      <h2>Quick Action</h2>
+
+      <button onclick="startEarning()">
+        Start Earning
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    function startEarning() {
+      alert("Earning system will be added soon!");
+    }
+
+    function logout() {
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>
